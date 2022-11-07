@@ -1,0 +1,32 @@
+FUNC validateOrder:
+	GetClientInfo
+	GetProductData
+	CheckAvailabilty
+	GetPayMethod
+	if(CheckAvailabilty)
+		GetInvNr
+		SetOrderValidity(true)
+	else
+		SetOrderValidity(false)
+
+
+FUNC generateBill:
+	GetClientInfo
+	GetProductData
+	GetInvNr
+	GetOrderValidity
+	
+	if(GetOrderValidity)
+		StartBillGeneration
+		GetPayMethod	
+	else
+		BillGenerationFailed
+
+FUNC  confirmExpedition:
+	GetBill
+	GetPayMethod
+	InformClient
+	AssignOrderToCourier
+		
+
+	
